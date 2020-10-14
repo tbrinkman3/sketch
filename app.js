@@ -1,23 +1,34 @@
-const container = document.getElementById("container");
-
-//Create grid
-function makeRows(rows, cols) {
-    container.style.setProperty('--grid-rows', rows);
-    container.style.setProperty('--grid-cols', cols);
-    for (c = 0; c < (rows * cols); c++) {
+function createGrid(size) {
+    const gameBoard = document.querySelector('body');
+    const container = document.createElement("div");
+    gameBoard.appendChild(container).id = 'container';
+    container.style.setProperty('--grid-rows', size);
+    container.style.setProperty('--grid-cols', size);
+    for (let i=0; i < (size ** 2); i++) {
         let cell = document.createElement('div');
-        cell.innerText = (c + 1);
-        container.appendChild(cell).className = "grid-item";
-    }
-}
+        container.appendChild(cell).className = "grid-item"
+    };
+};
 
-makeRows(16,16);
+createGrid(16);
+color();
 
-//Fill in squares
-const squares = document.querySelectorAll('.grid-item');
 
-squares.forEach((square) => {
-    square.addEventListener('mouseover', () => {
-        square.style.backgroundColor = 'blue';
-    })
+
+const reset = document.getElementById('reset').addEventListener('click', function() {;
+
+    const div = document.querySelector('#container');
+    div.remove('div');
+    let size = prompt('Size of canvas? (pixels)');
+    createGrid(size);
+    color();
 })
+
+function color() {
+    const gridBits = document.querySelectorAll('.grid-item');
+    gridBits.forEach((bit) => {
+        bit.addEventListener("mouseover", function() {
+            bit.style.backgroundColor = 'black';
+        })
+    })
+};
