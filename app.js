@@ -1,5 +1,5 @@
 function createGrid(size) {
-    const gameBoard = document.querySelector('body');
+    const gameBoard = document.querySelector('#gamezone');
     const container = document.createElement("div");
     gameBoard.appendChild(container).id = 'container';
     container.style.setProperty('--grid-rows', size);
